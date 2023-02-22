@@ -1,9 +1,17 @@
+import { Component } from 'react';
 import { Phonebook } from './Phonebook/Phonebook';
 
-export const App = () => {
-  return (
-    <>
-      <Phonebook />
-    </>
-  );
-};
+export class App extends Component {
+  state = {
+    contacts: [],
+    name: ``,
+  };
+
+  render() {
+    return (
+      <>
+        <Phonebook />
+      </>
+    );
+  }
+}
