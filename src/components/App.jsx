@@ -1,5 +1,9 @@
 import { Component } from 'react';
+import { Contacts } from './Contacts';
+import { Container } from './Container';
+import { GlobalStyle } from './GlobalStyles';
 import { Phonebook } from './Phonebook/Phonebook';
+import { Section } from './Section';
 
 export class App extends Component {
   state = {
@@ -10,7 +14,15 @@ export class App extends Component {
   render() {
     return (
       <>
-        <Phonebook />
+        <GlobalStyle />
+        <Container>
+          <Section title="Phonebook">
+            <Phonebook />
+          </Section>
+          <Section title="Contacts">
+            <Contacts />
+          </Section>
+        </Container>
       </>
     );
   }
