@@ -23,6 +23,10 @@ export class ContactForm extends Component {
       number: this.state.number,
     });
 
+    this.reset();
+  };
+
+  reset = () => {
     this.setState({ ...INITIAL_STATE });
   };
 
