@@ -2,11 +2,12 @@ import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { Button, Input, Label } from './ContactForm.styled';
 
+const INITIAL_STATE = {
+  name: '',
+  number: '',
+};
 export class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
-  };
+  state = { ...INITIAL_STATE };
 
   handleChange = event => {
     const { name, value } = event.currentTarget;
@@ -22,7 +23,7 @@ export class ContactForm extends Component {
       number: this.state.number,
     });
 
-    this.setState({ name: '', number: '' });
+    this.setState({ ...INITIAL_STATE });
   };
 
   render() {
