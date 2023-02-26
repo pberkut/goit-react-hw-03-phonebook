@@ -16,12 +16,6 @@ export class App extends Component {
   addContact = newContact => {
     const { contacts } = this.state;
 
-    const contact = {
-      id: newContact.id,
-      name: newContact.name,
-      number: newContact.number,
-    };
-
     const isExistsContact = contacts.find(
       contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
@@ -29,7 +23,7 @@ export class App extends Component {
     this.setState(({ contacts }) =>
       isExistsContact
         ? Notify.failure(`${newContact.name} is already in contacts.`)
-        : { contacts: [contact, ...contacts] }
+        : { contacts: [newContact, ...contacts] }
     );
   };
 
