@@ -22,11 +22,15 @@ const ContactFormSchema = Yup.object().shape({
 
 export const ContactForm = ({ onSave }) => {
   const handleSubmit = (values, actions) => {
-    onSave({
-      ...values,
+    const isUnique = onSave({
       id: nanoid(2),
+      name: values.name.trim(),
+      phone: values.phone.trim(),
     });
-    actions.resetForm();
+
+    if (isUnique) {
+      actions.resetForm();
+    }
   };
 
   return (

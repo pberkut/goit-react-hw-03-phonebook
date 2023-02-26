@@ -6,6 +6,7 @@ import { Section } from './Section';
 import { ContactForm } from './ContactForm';
 import { Filter } from './Filter';
 import { ContactList } from './ContactList';
+import { getFilteredArray } from 'utils/getFilteredArray';
 
 const INITIAL_STATE = {
   contacts: [],
@@ -18,15 +19,19 @@ export class App extends Component {
   addContact = newContact => {
     const { contacts } = this.state;
 
-    const isExistsContact = contacts.find(
+    const isUniqueContact = contacts.find(
       contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
 
-    this.setState(({ contacts }) =>
-      isExistsContact
-        ? Notify.failure(`${newContact.name} is already in contacts.`)
-        : { contacts: [newContact, ...contacts] }
-    );
+    if (isUniqueContact) {
+      Notify.failure(`${newContact.name} is already in contacts.`);
+      return false;
+    }
+
+    this.setState(({ contacts }) => ({
+      contacts: [newContact, ...contacts],
+    }));
+    return true;
   };
 
   deleteContact = contactId => {
@@ -35,23 +40,23 @@ export class App extends Component {
     }));
   };
 
-  changeFilter = e => {
+  setFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
 
-  getVisibleContacts = () => {
-    const { contacts, filter } = this.state;
-    const normalizedFilter = filter.toLowerCase();
+  // getVisibleContacts = () => {
+  //   const { contacts, filter } = this.state;
+  //   const normalizedFilter = filter.toLowerCase();
 
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  };
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(normalizedFilter)
+  //   );
+  // };
 
   render() {
-    const { filter } = this.state;
-    const visibleContacts = this.getVisibleContacts();
-
+    const { contacts, filter } = this.state;
+    // const filteredContacts = this.getVisibleContacts();
+    const filteredContacts = getFilteredArray(contacts, filter);
     return (
       <>
         <GlobalStyle />
@@ -60,9 +65,9 @@ export class App extends Component {
             <ContactForm onSave={this.addContact} />
           </Section>
           <Section title="Contacts">
-            <Filter value={filter} onChange={this.changeFilter} />
+            <Filter value={filter} onChange={this.setFilter} />
             <ContactList
-              contacts={visibleContacts}
+              contacts={filteredContacts}
               onDeleteContact={this.deleteContact}
             />
           </Section>
