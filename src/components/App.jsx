@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { GlobalStyle } from './GlobalStyles';
-import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix';
 import { Container } from './Container';
 import { Section } from './Section';
@@ -18,7 +17,7 @@ export class App extends Component {
     const { contacts } = this.state;
 
     const contact = {
-      id: nanoid(2),
+      id: newContact.id,
       name: newContact.name,
       number: newContact.number,
     };
@@ -62,7 +61,7 @@ export class App extends Component {
         <GlobalStyle />
         <Container>
           <Section title="Phonebook">
-            <ContactForm onSubmit={this.addContact} />
+            <ContactForm onSave={this.addContact} />
           </Section>
           <Section title="Contacts">
             <Filter value={filter} onChange={this.changeFilter} />

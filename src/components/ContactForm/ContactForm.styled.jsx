@@ -1,16 +1,22 @@
 import styled from 'styled-components';
+import { ErrorMessage as YupErrorMessage, Field as FieldFormik } from 'formik';
 
-export const Label = styled.label`
+export const ErrorMessage = styled(YupErrorMessage)`
+  font-size: 11px;
+  color: red;
+`;
+
+export const FormField = styled.label`
+  display: block;
+  height: 70px;
   font-size: 18px;
   font-weight: 700;
 `;
 
-export const Input = styled.input`
+export const Field = styled(FieldFormik)`
   display: block;
-  margin-top: 4px;
 `;
 
 export const Button = styled.button`
-  display: block;
-  margin-top: 16px;
+  margin-top: 8px;
 `;
