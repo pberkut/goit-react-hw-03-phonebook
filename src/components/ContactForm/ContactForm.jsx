@@ -6,7 +6,7 @@ import { nanoid } from 'nanoid';
 
 const INITIAL_VALUE = {
   name: '',
-  number: '',
+  phone: '',
 };
 
 const ContactFormSchema = Yup.object().shape({
@@ -14,7 +14,7 @@ const ContactFormSchema = Yup.object().shape({
     .min(3, 'Must be 3 characters or more')
     .max(50, 'Must be 50 characters or less')
     .required('Required'),
-  number: Yup.string()
+  phone: Yup.string()
     .min(5, 'Must be 5 characters or more')
     .max(30, 'Must be 30 characters or less')
     .required('Required'),
@@ -48,15 +48,15 @@ export const ContactForm = ({ onSave }) => {
           <ErrorMessage name="name" component="p" />
         </FormField>
         <FormField>
-          Number
+          Phone
           <Field
-            name="number"
+            name="phone"
             type="tel"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-          <ErrorMessage name="number" component="p" />
+          <ErrorMessage name="phone" component="p" />
         </FormField>
         <Button type="submit">Add contact</Button>
       </Form>

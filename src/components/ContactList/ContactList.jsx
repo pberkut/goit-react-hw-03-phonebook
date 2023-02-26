@@ -6,12 +6,12 @@ export const ContactList = ({ contacts, onDeleteContact }) => {
   return (
     <div>
       <List>
-        {contacts.map(({ id, name, number }) => (
+        {contacts.map(({ id, name, phone }) => (
           <ContactItem
             key={id}
             id={id}
             name={name}
-            number={number}
+            phone={phone}
             onDeleteContact={onDeleteContact}
           />
         ))}
@@ -25,7 +25,7 @@ ContactList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
     })
   ).isRequired,
   onDeleteContact: PropTypes.func.isRequired,
