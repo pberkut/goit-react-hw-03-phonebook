@@ -7,11 +7,13 @@ import { ContactForm } from './ContactForm';
 import { Filter } from './Filter';
 import { ContactList } from './ContactList';
 
+const INITIAL_STATE = {
+  contacts: [],
+  filter: '',
+};
+
 export class App extends Component {
-  state = {
-    contacts: [],
-    filter: '',
-  };
+  state = { ...INITIAL_STATE };
 
   addContact = newContact => {
     const { contacts } = this.state;
