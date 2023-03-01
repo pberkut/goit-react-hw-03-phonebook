@@ -7,6 +7,7 @@ import { ContactForm } from './ContactForm';
 import { Filter } from './Filter';
 import { ContactList } from './ContactList';
 import { getFilteredArray } from 'utils/getFilteredArray';
+import { Wrapper } from './Wrapper';
 
 const INITIAL_STATE = {
   contacts: [],
@@ -61,16 +62,20 @@ export class App extends Component {
       <>
         <GlobalStyle />
         <Container>
-          <Section title="Phonebook">
-            <ContactForm onSave={this.addContact} />
-          </Section>
-          <Section title="Contacts">
-            <Filter value={filter} onChange={this.setFilter} />
-            <ContactList
-              contacts={filteredContacts}
-              onDeleteContact={this.deleteContact}
-            />
-          </Section>
+          <Wrapper>
+            <Section title="Phonebook">
+              <ContactForm onSave={this.addContact} />
+            </Section>
+            <Section title="Search">
+              <Filter value={filter} onChange={this.setFilter} />
+            </Section>
+            <Section title="Contacts">
+              <ContactList
+                contacts={filteredContacts}
+                onDeleteContact={this.deleteContact}
+              />
+            </Section>
+          </Wrapper>
         </Container>
       </>
     );

@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types';
+import { FormField } from './Filter.styled';
 
 export const Filter = ({ value, onChange }) => (
-  <label>
-    Find contacts by name
-    <input type="text" value={value} onChange={onChange} />
-  </label>
+  <FormField>
+    Find contacts by name or phone:
+    <input
+      type="text"
+      value={value}
+      title="Type name or phone"
+      onChange={onChange}
+    />
+  </FormField>
 );
 
 Filter.propTypes = {
